@@ -24,11 +24,14 @@ import * as APIKeys from "../security/api-keys.js";
 import * as Cookies from "../processing/cookie/manager.js";
 import * as YouTubeSession from "../processing/helpers/youtube-session.js";
 
-const git = {
-    branch: await getBranch(),
-    commit: await getCommit(),
-    remote: await getRemote(),
-}
+let git = { branch: "unknown", commit: "unknown", remote: "unknown" };
+try {
+    git = {
+        branch: await getBranch(),
+        commit: await getCommit(),
+        remote: await getRemote(),
+    }
+} catch {}
 
 const version = await getVersion();
 
